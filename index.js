@@ -70,6 +70,13 @@ function applyReplacements(replacements, sourceFile) {
 }
 
 
+function replace(nodeKind, text, parentNodeKinds, file, newText) {
+  let positions = getPositions(nodeKind, text, parentNodeKinds, file)
+  let replacements = getReplacements(positions, newText)
+  return applyReplacements(replacements, file);
+}
+
 module.exports.getPositions = getPositions
 module.exports.getReplacements = getReplacements
 module.exports.applyReplacements = applyReplacements
+module.exports.replace = replace
